@@ -1,0 +1,71 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	// sequence := adder()
+
+	// fmt.Println(sequence())
+	// fmt.Println(sequence())
+	// fmt.Println(sequence())
+	// fmt.Println(sequence())
+
+	// ^ i keep added in every of execution of sequence
+
+	// sequence2 := adder()
+	// fmt.Println(sequence2())
+
+	// ^ this sequence2 is re-initializing the sequence to 0
+
+	subtracter := func() func(int) int { // <== no name == anonymous func
+		// ^ the int outside the braces is the return type => note that shit
+
+		countdown := 99
+		return func(x int) int {
+			countdown -= x
+			return countdown
+		}
+	}() // <== pls mind this anonymous function need this braces/bracked idfk the name
+
+	// Using the closure subtracter
+	fmt.Println(subtracter(1))
+	fmt.Println(subtracter(2))
+	fmt.Println(subtracter(3))
+	fmt.Println(subtracter(4))
+	fmt.Println(subtracter(5))
+
+}
+
+func adder() func() int {
+	i := 0
+	fmt.Println("previous value of i:", i)
+	return func() int { //<=== anonymous function
+		i++
+		fmt.Println("added 1 to i")
+		return i
+	}
+}
+
+// Practical Use Cases
+/*
+	- Stateful Functions
+	- Encapsulation
+	- Callbacks
+*/
+// Usefulness of Closures
+/*
+	- Encapsulation
+	- Flexibility
+	- Readability
+*/
+// Considerations
+/*
+	- Memory Usage
+	- Concurrency
+*/
+// Considerations
+/*
+	- Limit Scope
+	- Avoid Overuse
+*/
