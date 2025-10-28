@@ -1,0 +1,52 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	var ptr *int
+	var a int = 10
+	ptr = &a // <= how pointer looks == referencing a pointer
+
+	fmt.Println(a)
+	fmt.Println(ptr)  // <= will print out the exact memory address where go storing the "a" variable
+	fmt.Println(*ptr) // deferencing a pointer so we can actually see whats being saved on the pointered variable
+
+	modifyValue(ptr)
+	fmt.Println(a)
+}
+
+func modifyValue(ptr *int) {
+	*ptr++
+}
+
+/*
+	# A pointer is a variable that sttores the memory address of another variable.
+
+	# Use Cases
+		- Modify the value of variable indirectly
+		- Pass large data structures effeciently between functions
+		- Manage memory directly for performance reasons
+
+	# Pointer Declaration and Initialization
+		- Declaration Syntax:
+		 	var ptr *int
+			*`ptr` is a pointer to an integer (`*int`)*
+		- Initialization:
+			var a int = 10
+			ptr = &a // ptr now points to a's memory address
+
+	# Pointer Operations: Limited to referencing (`&`) and dereferencing (`*`)
+
+	# Nil Pointers
+
+	# Go does not support pointer arithmetic like C or C++
+
+	# Passing Pointers to Functions
+
+	# Pointers to Structs
+
+	# Use Pointers when a function needs to modify an argument's value
+
+	# `unsafe.Pointer(&x)` converts the address of `x` to an `unsafe.Pointer`
+*/
