@@ -1,0 +1,93 @@
+package main
+
+import (
+	"fmt"
+	"unicode/utf8"
+)
+
+func main() {
+
+	message := "Hello, \nGo!"  // new line
+	message1 := "Hello, \tGo!" // t add tab space to the string ykwim
+	message2 := "Hello, \rGo!" // Hello => Go!lo
+	rawMessage := `Hello\nGo`  // <== Backticks are used for raw string literals
+
+	fmt.Println(message)
+	fmt.Println(message1)
+	fmt.Println(message2)
+	fmt.Println(rawMessage)
+
+	fmt.Println("length of message2 variable is", len(rawMessage))
+
+	fmt.Println("The first character in message var is", message[0]) // ASCII
+
+	greeting := "Hello"
+	name := "Alice"
+	fmt.Println(greeting + " " + name) // when we concatinating a string go won't create a space because this method is considered as joining string not formatting or sum
+
+	str1 := "Apple"  // A has an ASCII value of 65
+	str2 := "Banana" // b has an ASCII value of 98
+	str3 := "app"    // a has an ASCII value of 97
+	str := "apple"   // a has an ASCII value of 97
+	// ^^ BEHIND THE SCENE, THIS ALL ARE NUMERIC. ^^
+
+	fmt.Println(str1 < str2)
+	fmt.Println(str3 < str1)
+	fmt.Println(str > str1)
+	fmt.Println(str > str3)
+	// if onee string is a prefix of another, then shorter string is considered smaller
+
+	// %d %c <== formatting verbs
+
+	for _, char := range message {
+		// fmt.Printf("Character at index %d is %c\n", i, char)
+		fmt.Printf("%x\n", char)
+	}
+
+	// ^ this is how you loop through a string
+	fmt.Println("Rune count:", utf8.RuneCountInString(greeting))
+	// A rune is an alias for int32 and it represents a Unicode code point, a Unicode value.
+
+	greetingWithName := greeting + name
+	fmt.Println(greetingWithName)
+
+	var ch rune = 'a'
+	fmt.Println(ch)
+
+	fmt.Printf("%c\n", ch)
+
+	cstr := string(ch)
+	fmt.Println(cstr)
+
+	fmt.Printf("Type of cstr is %T\n", ch) // <== this is how we check the type of variable
+
+	const NIHONGO = "因ま" // Japanese text
+	fmt.Println(NIHONGO)
+
+	jptext := "因ま因まま" // JP text
+	for _, runeValue := range jptext {
+		fmt.Printf("%v\n", runeValue) // producing unicode values in INT32 format (integer) the "%v"
+	}
+
+	r := '😁'
+	fmt.Printf("%v\n", r)
+	fmt.Printf("%c\n", r)
+}
+
+/*
+	// STRING AND RUNES //
+		/ Runes and Characters
+			/- Similarities
+				- Representing Characters
+				- Storage Size
+			/- Differences
+				- Unicode Support
+				- Type and Size
+				- Encoding and Handling
+
+		/ Practical Considerations
+			/- Internationalization
+			/- Portability
+			/- Efficiency
+
+*/
