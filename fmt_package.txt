@@ -1,0 +1,56 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	// Printing Functions
+	// fmt.Print("Hello ")
+	// fmt.Print("World!")
+	// fmt.Print(12, 456)
+
+	// fmt.Println("Hello ")
+	// fmt.Println("World!")
+	// fmt.Println(12, 456)
+
+	// name := "John"
+	// age := 25
+	// fmt.Printf("Name: %s, Age: %d\n", name, age)
+	// fmt.Printf("Binary: %b, Hex: %X\n", age, age)
+
+	// Formatting Functions
+	// s := fmt.Sprint("Hello ", "World!", 123, 456) // <= concatinated
+	// fmt.Print(s)
+
+	// s = fmt.Sprintln("Hello", "World!", 123, 456)
+	// fmt.Print(s)
+
+	// sf := fmt.Sprintf("Name: %s, Age: %d", name, age)
+	// fmt.Println(sf)
+
+	// Scanning Functions
+	// var name string
+	// var age int
+
+	// fmt.Print("Enter your name and age:")
+	// // fmt.Scan(&name, &age) // keep scanning if you're not fulfilling the required value
+	// // fmt.Scanln(&name, &age) // stop scanning at a new line, even if you're not fulfilling the required value, it won't mind
+	// fmt.Scanf("%s %d", &name, &age) // we have to input our command to this scan in the exact format we declared, if theres comma/space we need to put them
+	// fmt.Printf("Name: %s, Age: %d\n", name, age)
+
+	// Error Formatting Functions
+
+	err := checkAge(15)
+	if err != nil {
+		fmt.Println("Error: ", err)
+	}
+
+	// ^ commmon format of error handling
+}
+
+func checkAge(age int) error {
+	if age < 18 {
+		return fmt.Errorf("Age %d is too young to drive", age)
+	}
+	return nil
+}
