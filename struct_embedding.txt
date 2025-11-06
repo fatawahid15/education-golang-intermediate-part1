@@ -1,0 +1,46 @@
+package main
+
+import "fmt"
+
+type person struct {
+	name string
+	age  int
+}
+
+type Employee struct {
+	employeeInfo person // Embedded struct Named field
+	person              // Anonymous field
+	empId        string
+	salary       float64
+}
+
+func (p person) introduce() {
+	fmt.Printf("Hi, I'm %s and I'm %d years old.\n", p.name, p.age)
+}
+
+func (e Employee) introduce() {
+	fmt.Printf("Hi, I'm %s, Employee ID: %s, and i earn %.2f.\n", e.name, e.empId, e.salary)
+
+}
+
+func main() {
+	emp := Employee{
+		person: person{name: "John", age: 30},
+		empId:  "E001", salary: 50000,
+	}
+
+	fmt.Println("Name:", emp.employeeInfo.name)
+	fmt.Println("Age:", emp.age)
+	fmt.Println("ID:", emp.empId)
+	fmt.Println("Salary:", emp.salary)
+
+	emp.introduce()
+
+}
+
+// --- Struct Embedding ---
+// - Best Practices and Considerations
+// 		# Composition over Inheritance
+// 		# Avoid Diamond Problem
+//  	# Clarity and Readibilty
+// 		# Inittialization
