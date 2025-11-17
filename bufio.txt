@@ -1,0 +1,89 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+func main() {
+
+	// reader := bufio.NewReader(strings.NewReader("Hello, bufio packageeee!\nHow are you doing?"))
+	// // fmt.Println(reader)
+
+	// // Reading byte slice
+	// data := make([]byte, 20)
+	// // data := make([]byte, 21)
+	// n, err := reader.Read(data)
+	// if err != nil {
+	// 	fmt.Println("Error reading:", err)
+	// 	return
+	// }
+
+	// fmt.Printf("Read %d, bytes: %s\n", n, data[:n])
+
+	// line, err := reader.ReadString('\n') // only read string before "\n" / new line
+	// if err != nil {
+	// 	fmt.Println("Error reading string: ", err)
+	// 	return
+	// }
+
+	// fmt.Println("Read string:", line)
+
+	writer := bufio.NewWriter(os.Stdout)
+
+	// Writing byte slice
+	data := []byte("Hello, bufio pacakge!\n")
+	n, err := writer.Write(data)
+	if err != nil {
+		fmt.Println("Error writing:", err)
+		return
+	}
+	fmt.Printf("Wrote %d bytes\n", n)
+
+	// Flush the buffer to ensure all data is written to os.Stdout
+	err = writer.Flush()
+	if err != nil {
+		fmt.Println("Error flushing writer:", err)
+		return
+	}
+
+	// Writing String
+	str := "This is a string.\n"
+	n, err = writer.WriteString(str)
+	if err != nil {
+		fmt.Println("Error writing string:", err)
+		return
+	}
+	fmt.Printf("Wrote %d bytes.\n", n)
+
+	// Flush the buffer
+	err = writer.Flush()
+	if err != nil {
+		fmt.Println("Error flushing writer:", err)
+		return
+	}
+}
+
+/*
+	=== *Bufio Package* ===
+	-	Key Components
+		-	bufio.Reader
+			-	func NewReader(rd io.Reader) *Reader
+			-	func (r *Reader) Read(p []byte) (n int, err error)
+			- 	func (r *Reader) ReadString(delim byte) (line string, err error)
+		- 	bufio.Writer
+			-	func NewWriter(wr io.Writer) *Writer
+			-	func (w *Writer) Write(p []byte) (n int, err error)
+			-	func (w *Writer) WriteString(s string) (n int, err error)
+
+	-	Use Cases and Benefits
+		-	Buffering
+		-	Convenience Methods
+		-	Error Handling
+
+	-	Best Practices
+		- 	Check Errors
+		- 	Wrap Reader and Writer instances for efficient buffered I/O operations
+		-	Don't forget to call Flush
+*/
